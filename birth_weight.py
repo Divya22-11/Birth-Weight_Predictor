@@ -12,7 +12,7 @@ def get_cleaned_data(form_data):
     height= float(form_data["height"])
     weight= float(form_data["weight"])
     smoke= float(form_data["smoke"])
-   
+
     cleaned_data={
         "gestation":[gestation],
         "parity" : [parity],
@@ -20,12 +20,12 @@ def get_cleaned_data(form_data):
         "height":[height],
         "weight":[weight],
         "smoke":[smoke ]   }
-    
+
     return cleaned_data
 
 @app.route("/",methods=["GET"])
 def home_page():
-    return render_template("birth_weight.html")
+    return render_template("predict.html")
 
 # define end point
 @app.route("/predict",methods=["POST"])
@@ -41,7 +41,7 @@ def get_prediction():
     
     
     # load a Ml trained model:
-    with open("model/model.pkl","rb") as obj:
+    with open("model.pkl","rb") as obj:
         model=pickle.load(obj)
         
     # make prediction on user data:
